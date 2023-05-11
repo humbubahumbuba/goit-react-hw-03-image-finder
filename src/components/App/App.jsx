@@ -25,7 +25,7 @@ export class App extends Component {
   };
 
   componentDidUpdate = (_, prevState) => {
-    const { page, loadedImages, searchQuery } = this.state;
+    const { page, loadedImages, searchQuery } = this.prevState;
     const prevQueryValue = prevState.searchQuery;
     const currentQueryValue = searchQuery;
 
