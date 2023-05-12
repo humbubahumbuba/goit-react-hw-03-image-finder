@@ -37,7 +37,7 @@ export class App extends Component {
           this.showNotification(data);
 
           this.setState({
-            loadedImages: prevState => ({ images: [...prevState.images, ...data.hits] }),
+            loadedImages: [...loadedImages, ...data.hits],
             status: 'resolved',
             totalPages: Math.floor(data.totalHits / 12),
           });
