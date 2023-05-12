@@ -25,7 +25,7 @@ export class App extends Component {
   };
 
   componentDidUpdate = (_, prevState) => {
-    const { page, loadedImages, searchQuery } = this.prevState;
+    const { page, loadedImages, searchQuery } = this.state;
     const prevQueryValue = prevState.searchQuery;
     const currentQueryValue = searchQuery;
 
@@ -37,7 +37,7 @@ export class App extends Component {
           this.showNotification(data);
 
           this.setState({
-            loadedImages: [...loadedImages, ...data.hits],
+            loadedImages: this.setState(prevState => ({ images: [...prevState.images, ...data.hits] })),
             status: 'resolved',
             totalPages: Math.floor(data.totalHits / 12),
           });

@@ -11,7 +11,7 @@ export const ImageGallery = ({ loadedImages, onClick }) => {
             key={image.id}
             image={image}
             onClick={onClick}
-          ></ImageGalleryItem>
+          />
         );
       })}
     </ImageGalleryList>
