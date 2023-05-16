@@ -25,7 +25,7 @@ export class App extends Component {
   };
 
    componentDidUpdate = (_, prevState) => {
-    const { page, loadedImages, searchQuery } = this.state;
+    const { page, searchQuery } = this.state;
     const prevQueryValue = prevState.searchQuery;
     const currentQueryValue = searchQuery;
 
@@ -36,11 +36,13 @@ export class App extends Component {
         fetchPixabay(searchQuery, page).then(data => {
           this.showNotification(data);
 
-          this.setState({
-            loadedImages: [...loadedImages, ...data.hits],
+          this.setState(prev => ({
+            loadedImages: [...prev.loadedImages, ...data.hits],
             status: 'resolved',
             totalPages: Math.floor(data.totalHits / 12),
-          });
+          }));
+
+         
         });
       } catch (error) {
         this.setState({ error: true });
