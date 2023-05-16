@@ -36,8 +36,8 @@ export class App extends Component {
         fetchPixabay(searchQuery, page).then(data => {
           this.showNotification(data);
 
-          this.setState(prev => ({
-            loadedImages: [...prev.loadedImages, ...data.hits],
+          this.setState(prevState => ({
+            loadedImages: [...prevState.loadedImages, ...data.hits],
             status: 'resolved',
             totalPages: Math.floor(data.totalHits / 12),
           }));
